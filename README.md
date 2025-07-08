@@ -51,8 +51,8 @@ SmartAttendanceSystem/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/smart-attendance-system.git
-cd smart-attendance-system
+git clone https://github.com/Anusha-Devadiga79/SmartAttendance_Web.git
+cd SmartAttendance_Web
 ````
 
 ### 2. Install Dependencies
