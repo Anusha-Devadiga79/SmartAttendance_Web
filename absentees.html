@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Today’s Absentees</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      background: #252432;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      text-align: center;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+    li {
+      margin: 8px 0;
+      font-size: 18px;
+    }
+    .note {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #45f3ff;
+    }
+    h2 {
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Absentees - {{ date }}</h2>
+
+{% if absentees %}
+  <ul>
+    {% for a in absentees %}
+      <li>{{ a }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p class="note">Great! No absentees today.</p>
+{% endif %}
+
+</body>
+</html>

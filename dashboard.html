@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      min-height: 100vh;
+      background: #252432;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    h1 {
+      color: white;
+      margin-bottom: 40px;
+      font-size: 32px;
+    }
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 300px;
+    }
+    .action-buttons a {
+      text-decoration: none;
+      padding: 15px;
+      background-color: #45f3ff;
+      color: #252432;
+      font-weight: 600;
+      text-align: center;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+    .action-buttons a:hover {
+      background-color: #252432;
+      color: #45f3ff;
+      box-shadow: 0 0 10px #45f3ff;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Admin Dashboard</h1>
+
+<div class="action-buttons">
+<a href="{{ url_for('view_data') }}">View Attendance Data</a>
+<a href="{{ url_for('shortage') }}">Attendance Shortage</a>
+<a href="{{ url_for('absentees_today') }}">Today's Absentees</a>
+<a href="{{ url_for('add_student') }}">Add Student</a>
+<a href="{{ url_for('remove_student') }}">Remove Student</a>
+
+</div>
+
+</body>
+</html>

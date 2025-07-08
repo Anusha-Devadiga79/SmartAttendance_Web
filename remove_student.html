@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Remove Student</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      background: #252432;
+    }
+
+    .page-title {
+      color: white;
+      font-size: 24px;
+      margin-top: 30px;
+    }
+
+    .form-container {
+      margin-top: 30px;
+    }
+
+    select, button {
+      padding: 12px;
+      width: 250px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+
+    select {
+      background: #2d2d39;
+      color: white;
+      border: 1px solid #45f3ff;
+    }
+
+    button {
+      background: #45f3ff;
+      color: #252432;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #252432;
+      color: #45f3ff;
+      box-shadow: 0 0 10px #45f3ff;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 16px;
+      background: #45f3ff;
+      color: #252432;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: 0.3s ease;
+    }
+
+    a:hover {
+      background: #252432;
+      color: #45f3ff;
+      box-shadow: 0 0 10px #45f3ff;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="page-title">Remove Student</h1>
+
+  <div class="form-container">
+    <form method="POST" action="/remove-student">
+      <select name="name" required>
+        {% for student in students %}
+          <option value="{{ student }}">{{ student }}</option>
+        {% endfor %}
+      </select><br>
+      <button type="submit">Delete Student</button>
+    </form>
+
+    <a href="/dashboard"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Student</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      background: #252432;
+    }
+
+    .box {
+      position: relative;
+      width: 420px;
+      background: repeating-conic-gradient(
+        from var(--a),
+        #ff2770 0%,
+        #ff2770 5%,
+        transparent 5%,
+        transparent 40%,
+        #ff2770 50%
+      );
+      animation: rotating 4s linear infinite;
+      border-radius: 20px;
+      filter: drop-shadow(0 15px 50px #000);
+      margin-top: 30px;
+      padding: 20px;
+    }
+
+    @keyframes rotating {
+      0% { --a: 0deg; }
+      100% { --a: 360deg; }
+    }
+
+    .box::before {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      background: repeating-conic-gradient(
+        from var(--a),
+        #45f3ff 0%,
+        #45f3ff 5%,
+        transparent 5%,
+        transparent 40%,
+        #45f3ff 50%
+      );
+      border-radius: 20px;
+      animation: rotating 4s linear infinite;
+      animation-delay: -1s;
+    }
+
+    .box::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      background: #2d2d39;
+      border-radius: 15px;
+      border: 8px solid #25252b;
+    }
+
+    .form-box {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      color: white;
+    }
+
+    .form-box h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input[type="text"], input[type="submit"], button {
+      padding: 10px;
+      width: 250px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    input[type="text"] {
+      background: #2d2d39;
+      color: white;
+      border: 1px solid #45f3ff;
+    }
+
+    input[type="submit"], button {
+      background: #45f3ff;
+      color: #252432;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover, button:hover {
+      background: #252432;
+      color: #45f3ff;
+      box-shadow: 0 0 10px #45f3ff;
+    }
+
+    video {
+      border-radius: 10px;
+      margin: 10px 0;
+      border: 2px solid #45f3ff;
+    }
+
+    a {
+      color: #45f3ff;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    canvas {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <div class="form-box">
+      <h2>Add Student</h2>
+      <form method="POST" action="/add-student" enctype="multipart/form-data" id="studentForm">
+        <input type="text" name="name" placeholder="Enter Student Name" required />
+        <video id="video" width="320" height="240" autoplay></video>
+        <canvas id="canvas"></canvas>
+        <input type="hidden" name="photo" id="photoData" />
+        <button type="submit">Capture & Save</button>
+      </form>
+      <a href="/dashboard">Back to Dashboard</a>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const photoInput = document.getElementById('photoData');
+    const form = document.getElementById('studentForm');
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => { video.srcObject = stream; })
+      .catch(err => console.error("Camera error:", err));
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const scale = 0.5;
+      canvas.width = video.videoWidth * scale;
+      canvas.height = video.videoHeight * scale;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      const imageData = canvas.toDataURL('image/jpeg', 0.7);
+      photoInput.value = imageData;
+
+      this.submit();
+    });
+  </script>
+
+</body>
+</html>
